@@ -22,12 +22,12 @@ class ScannerImpl: Scanner {
 }
 
 
-class MultifunctionalMachine: Printer, Scanner {
-    override fun scan(): File {
-        TODO("implement without duplication code")
-    }
+class MultifunctionalMachine(
+    private val printer: Printer,
+    private val scanner: Scanner): Printer by printer, Scanner by scanner
 
-    override fun print(text: String) {
-        TODO("implement without duplication code")
-    }
+fun main() {
+    val machine = MultifunctionalMachine(PrinterImpl(), ScannerImpl())
+    machine.print("a text")
+    machine.scan()
 }
